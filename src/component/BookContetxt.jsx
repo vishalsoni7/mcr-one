@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { books } from "../data";
 
 export const BookContext = createContext();
@@ -7,11 +7,6 @@ export const BookProvider = ({ children }) => {
   const [data, setData] = useState(books);
   const [searchBook, setSearchBook] = useState([]);
 
-  const getShelves = data.reduce(
-    (acc, curr) => (acc.includes(curr.shelves) ? acc : [...acc, curr.shelves]),
-    []
-  );
-
   const addToShelves = (bookId, event) => {
     const newShelves = event;
     const updatedShelves = data.map((book) =>
@@ -19,6 +14,11 @@ export const BookProvider = ({ children }) => {
     );
     setData(updatedShelves);
   };
+
+  const getShelves = data.reduce(
+    (acc, curr) => (acc.includes(curr.shelves) ? acc : [...acc, curr.shelves]),
+    []
+  );
 
   const values = {
     data,

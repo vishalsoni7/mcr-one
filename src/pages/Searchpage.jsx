@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { BookContext } from "../component/BookContetxt";
 
 export const Search = () => {
-  const { searchBook, getShelves, data, setSearchBook } =
+  const { searchBook, data, getShelves, setSearchBook, addToShelves } =
     useContext(BookContext);
 
   const handleSearch = (e) => {
@@ -28,7 +28,7 @@ export const Search = () => {
           <div key={book.id} className="content-inner-div">
             <div className="img-div">
               <img src={book.image} alt={book.shelves} />{" "}
-              <select>
+              <select onChange={(e) => addToShelves(book.id, e.target.value)}>
                 {getShelves.map((s) => (
                   <option> {s} </option>
                 ))}

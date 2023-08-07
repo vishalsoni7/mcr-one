@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { BookContext } from "../component/BookContetxt";
 
 export const Home = () => {
-  const { data, getShelves, addToShelves } = useContext(BookContext);
+  const { getShelves, addToShelves, data } = useContext(BookContext);
 
   return (
     <div>
@@ -30,7 +30,7 @@ export const Home = () => {
                           }
                         >
                           {getShelves.map((s) => (
-                            <option> {s} </option>
+                            <option key={s}> {s} </option>
                           ))}
                         </select>
                       </div>
